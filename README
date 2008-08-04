@@ -1,0 +1,31 @@
+simple-thrift-queue
+===================
+  Phillip Pearson
+  http://www.myelin.co.nz/post/2008/8/4/#200808043
+
+This is a toy in-memory (very much non-durable) queue -- the results
+of an evening's hacking with Facebook's Thrift protocol/RPC
+generator.
+
+On my laptop it handles about 4400 RPCs per second, i.e. if you have
+one producer and three consumers, the producer can push about 2200
+messages per second, which are fairly evenly spread across the
+consumers.
+
+Requirements
+============
+
+- Thrift
+- Python
+
+Building and running
+====================
+
+cd src
+make
+python py/server.py
+python py/timer.py
+python py/consumer.py
+python py/producer.py
+
+Try starting the server and a few consumers, then a producer.
