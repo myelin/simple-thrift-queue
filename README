@@ -3,14 +3,17 @@ simple-thrift-queue
   Phillip Pearson
   http://www.myelin.co.nz/post/2008/8/4/#200808043
 
-This is a toy in-memory (very much non-durable) queue -- the results
-of an evening's hacking with Facebook's Thrift protocol/RPC
-generator.
+This is a toy in-memory (very much non-durable) queue, with a client
+and server in Python and a server in C++ -- the results of an
+evening's hacking with Facebook's Thrift protocol/RPC generator.
 
-On my laptop it handles about 4400 RPCs per second, i.e. if you have
-one producer and three consumers, the producer can push about 2200
+On my laptop it handles about 4000 RPCs per second, i.e. if you have
+one producer and three consumers, the producer can push about 2000
 messages per second, which are fairly evenly spread across the
 consumers.
+
+The throughput is almost identical with the C++ server.  'top' reports
+~80% system time and 'iftop' reports ~300kB/s traffic.  
 
 Requirements
 ============
@@ -29,3 +32,9 @@ python py/consumer.py
 python py/producer.py
 
 Try starting the server and a few consumers, then a producer.
+
+C++ server
+===========
+
+cd src/cpp
+make run
